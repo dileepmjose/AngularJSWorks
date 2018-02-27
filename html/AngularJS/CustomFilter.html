@@ -1,0 +1,24 @@
+<html>
+<head>Angular JS Controller Example
+</head>
+<script src="../../script/angular.js"></script>
+<script src="../../script/customfilter.js"></script>
+<body>
+
+	<ul ng-app="myApp" ng-controller="CustomfilterCtrl">
+	
+	CUSTOM FILTER - MYFORMAT
+    <li ng-repeat="x in names">
+        {{x | myformat}}
+    </li>
+    <BR><BR>
+    CUSTOME FILTER -  CAMELCASE
+    <li ng-repeat="x in names">
+        {{x | camelcase}}
+    </li>
+    
+    
+</ul>
+
+</body>
+</html>

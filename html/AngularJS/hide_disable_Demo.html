@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+	<div ng-app="" ng-init="mySwitch=true">
+		<p>
+			<input type="checkbox" ng-model="mySwitch" />Button
+		</p>
+		<p>{{ mySwitch }}</p>
+		<p>
+			<button ng-disabled="!mySwitch">Button is ENABLE ONLY IF CHECKBOX IS SELECTED</button>
+		</p>
+		<div ng-show="mySwitch">
+			<p>This TEXT IS VISIBLE IF CHECKBOX SELECTED</p>
+		</div>
+	</div>
+</body>
+</html>

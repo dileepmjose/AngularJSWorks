@@ -1,0 +1,105 @@
+<html>
+<head>
+<script src="../../script/angular.js"></script>
+<script>
+	var app = angular.module('datagridapp', []);
+	app.controller('datagridctrl', function($scope) {
+		$scope.employee = [ {
+			id : '1',
+			name : 'Dileep',
+			country : 'IND'
+		}, {
+			id : '2',
+			name : 'Jose',
+			country : 'MX'
+		} ];
+
+		$scope.dodelete = function(index) {
+			alert(index);
+			if (index > -1) {
+				$scope.employee.splice(index, 1);
+			}
+		}
+
+		$scope.doedit = function(index) {
+			$scope.index_switch = false;
+		}
+
+		$scope.dodone = function() {
+			$scope.index_switch = true;
+		}
+
+		$scope.doadd = function() {
+			//alert($scope.employee.length+1);
+			if (($scope.txtadd != "") && ($scope.txtadd != "undefined")) {
+
+				if (($scope.txtcountry != "")
+						&& ($scope.txtcountry != "undefined")) {
+
+					$scope.employee.push({
+						id : $scope.employee.length + 1,
+						name : $scope.txtadd,
+						country : $scope.txtcountry
+					});
+
+					$scope.txtadd = '';
+					$scope.txtcountry = '';
+
+				} else {
+					alert("Enter a valid country")
+				}
+
+			} else {
+				alert("Enter a valid name");
+			}
+
+		}
+
+	});
+</script>
+<title>Data Grid Demo</title>
+</head>
+<body>
+	<div ng-app="datagridapp" ng-controller="datagridctrl"
+		ng-init="index_switch=true">
+
+		<table width="100%">
+			<tr>
+
+				<td width="50%" align="left">Name<input type="text" name="add"
+					ng-model="txtadd" /> Country<input type="text" name="add"
+					ng-model="txtcountry" /> <input type="button" ng-click="doadd()"
+					value="ADD" /></td>
+
+				<td width="50%" align="right"><input type="button" value="Done"
+					ng-click="dodone()" ng-hide="index_switch" /></td>
+
+			</tr>
+		</table>
+		
+		<table width="100%" border="1">
+			<tr>
+				<th width="20%" align="left">ID</th>
+				<th width="30%" align="left">NAME</th>
+				<th width="20%" align="left">COUNTRY</th>
+				<th width="30%" align="left">Action</th>
+			</tr>
+
+			<tr ng-repeat="e in employee track by $index">
+				<td width="20%" align="left">{{e.id}}</td>
+				<td width="30%" align="left" ng-hide="!index_switch">{{e.name}}</td>
+				<td width="20%" align="left" ng-hide="!ndex_switch">{{e.country}}</td>
+				<td width="30%" align="left" ng-hide="index_switch"><input
+					type="text" ng-model="e.name" /></td>
+				<td width="20%" align="left" ng-hide="index_switch"><input
+					type="text" ng-model="e.country" /></td>
+				<td width="30%" align="left"><input type="button" name="EDIT"
+					value="EDIT" ng-click="doedit($index)"/ > <input
+					type="button" name="DELETE" value="DELETE"
+					ng-click="dodelete($index)"/ ></td>
+			</tr>
+
+		</table>
+	</div>
+</body>
+</html>

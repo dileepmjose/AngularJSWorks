@@ -1,0 +1,44 @@
+<html>
+<head>
+<h1>TO DO LIST</h1>
+</head>
+<script src="../../script/angular.js"></script>
+<script src="../../script/todo.js"></script>
+<body>
+	<div ng-app="myApp" ng-controller="todoCtrl" ng-init="mySwitch=true">
+		<table width="37%">
+			<tr>
+				<td width="70%">
+					<div ng-hide="!mySwitch">
+						Enter Values <input type="text" name="txtName" ng-model="txtvale" />
+					</div>
+				</td>
+				<td width="15%"><button name="add" ng-hide="!mySwitch"
+						ng-click="addtodo()">ADD</button></td>
+				<td width="15%"><button name="edit" ng-hide="!mySwitch"
+						ng-click="edittodo()">EDIT</button></td>
+			</tr>
+		</table>
+
+		<button name="done" ng-hide="mySwitch" ng-click="done()">DONE</button>
+
+		<table width="37%" border="1">
+			<tr ng-repeat="x in names track by $index">
+				<div ng-hide="!mySwitch">
+					<td width="70%">{{x}}</td>
+					<td width="30%">
+						<button name="delete" ng-click="deletetodo($index)">DELETE</button>
+					</td>
+				</div>
+				<div ng-hide="mySwitch">
+					<td width="100%"><input type="text" ng-hide="mySwitch"
+						ng-model="x" /></td>
+				</div>
+			</tr>
+		</table>
+		
+		
+	</div>
+	</div>
+</body>
+</html>
